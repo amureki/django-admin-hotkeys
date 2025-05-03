@@ -5,7 +5,15 @@ Add hotkeys to the Django admin interface to improve your workflow.
 ## Usage
 
 1. `pip install django-admin-hotkeys`
-2. Add `django_admin_hotkeys` to your `INSTALLED_APPS` in `settings.py`:
+2. Add `django_admin_hotkeys` to your `INSTALLED_APPS` in `settings.py` and make sure it's before `django.contrib.admin`:
+   ```python
+   INSTALLED_APPS = [
+       ...
+       "django_admin_hotkeys",
+       "django.contrib.admin",
+       ...
+   ]
+   ```
 3. PROFIT!
 
 ## Hotkeys
