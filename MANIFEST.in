@@ -1,0 +1,4 @@
+include LICENSE
+include pyproject.toml
+include README.md
+recursive-include django_admin_hotkeys *.js *.html

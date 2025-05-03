@@ -1,6 +1,6 @@
 [project]
 name = "django-admin-hotkeys"
-version = "0.1.0"
+version = "0.1.1"
 description = "Add hotkeys to the Django admin interface to improve your workflow"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -31,7 +31,6 @@ keywords = [
 dependencies = [
     "django>=4.2",
 ]
-
 
 [project.urls]
 Homepage = "https://github.com/amureki/django-admin-hotkeys"
