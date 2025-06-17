@@ -98,35 +98,26 @@ describe('django-admin-hotkeys search_form.js', () => {
     });
 
     describe('initAddHotkey', () => {
-        const originalLocation = window.location;
-        beforeEach(() => {
-            delete window.location;
-            window.location = {href: '', assign: jest.fn()}; // Simple mock
-        });
-
-        afterEach(() => {
-            window.location = originalLocation;
-        });
-
-        test('should navigate to add link URL on "n" key press', () => {
-            const addUrl = '/admin/app/model/add/';
+        test('should trigger click on the add link on "n" key press', () => {
             const html = `
                 <ul class="object-tools">
-                    <li><a href="${addUrl}" class="addlink">Add</a></li>
+                    <li><a href="/admin/app/model/add/" class="addlink">Add</a></li>
                 </ul>
                 <button>Some Button</button>
             `;
             initializeDOMAndRunScript(html);
-            const button = document.querySelector('button');
-            button.focus();
+
+            document.querySelector('button').focus();
+
+            const addLink = document.querySelector('.object-tools .addlink');
+            const clickSpy = jest.spyOn(addLink, 'click').mockImplementation(() => {});
 
             const event = new KeyboardEvent('keydown', {key: 'n', bubbles: true});
             document.body.dispatchEvent(event);
 
-            const addLink = document.querySelector('.object-tools .addlink');
+            expect(clickSpy).toHaveBeenCalled();
 
-            expect(addLink).not.toBeNull(); // Ensure link exists before checking href
-            expect(window.location.href).toBe(addLink.href);
+            clickSpy.mockRestore();
         });
 
         test('should not add listener or throw error if add link does not exist', () => {
@@ -148,11 +139,9 @@ describe('django-admin-hotkeys search_form.js', () => {
 
             expect(() => {
                 const event = new KeyboardEvent('keydown', {key: 'n', bubbles: true});
-                const preventDefaultSpy = jest.spyOn(event, 'preventDefault'); // Check preventDefault too
-                const initialHref = window.location.href;
+                const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
                 document.body.dispatchEvent(event);
-                expect(window.location.href).toBe(initialHref); // Href shouldn't change
-                expect(preventDefaultSpy).not.toHaveBeenCalled(); // preventDefault shouldn't be called
+                expect(preventDefaultSpy).not.toHaveBeenCalled();
                 preventDefaultSpy.mockRestore();
             }).not.toThrow();
         });

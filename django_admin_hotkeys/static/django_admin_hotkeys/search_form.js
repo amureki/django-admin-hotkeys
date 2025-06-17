@@ -20,7 +20,13 @@
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'n' && !['INPUT', 'TEXTAREA'].includes(event.target.tagName)) {
                     event.preventDefault();
-                    window.location.href = addLink.href;
+                    // Trigger a click on the "Add" link instead of directly manipulating
+                    // `window.location`. This approach keeps the real browser behaviour
+                    // (navigation is handled by the anchor) while allowing tests that run
+                    // in jsdom to easily spy on `addLink.click` without dealing with the
+                    // non-configurable `window.location` object (which cannot be mocked in
+                    // Jest 30 / jsdom 26).
+                    addLink.click();
                 }
             });
         }
