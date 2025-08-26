@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "jest": "^30.0.4",
-    "jest-environment-jsdom": "^30.0.4"
+    "jest-environment-jsdom": "^30.0.5"
   },
   "jest": {
     "testEnvironment": "jsdom"
