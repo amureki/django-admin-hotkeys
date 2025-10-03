@@ -1,5 +1,7 @@
 # Django Admin Hotkeys
 
+> **⚠️ This project is discontinued.** Please use [django-admin-keyshortcuts](https://www.djangoproject.com/weblog/2025/sep/04/keyboard-shorcuts-in-django-via-gsoc-2025/) by @khanxmetu instead, which offers more comprehensive keyboard shortcuts for the Django admin interface.
+
 Add hotkeys to the Django admin interface to improve your workflow.
 
 ![django-admin-hotkeys demo screenshot](https://repository-images.githubusercontent.com/977099141/42f0d207-c575-40d8-adbb-78cd7b795248)
